@@ -1,0 +1,23 @@
+{
+  "name": "nqata-admin",
+  "version": "1.0.0",
+  "description": "Administration Nqata",
+  "author": "Nqata",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable --publish never"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "dz.nqata.admin",
+    "productName": "Nqata Admin",
+    "win": { "target": "portable" }
+  }
+}

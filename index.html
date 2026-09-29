@@ -1,1 +1,78 @@
-
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Nqata Admin</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src https://nmecbbmlvrzeqazapijf.supabase.co wss://nmecbbmlvrzeqazapijf.supabase.co">
+<style>
+  :root { --brand:#0B5F50; --brand2:#14B8A6; --bg:#f4f6f8; --ink:#1f2933; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: "Segoe UI", Arial, sans-serif; background:var(--bg); color:var(--ink); }
+  [hidden] { display:none !important; }
+  .center { min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--brand),var(--brand2)); }
+  .box { background:#fff; padding:32px; border-radius:20px; width:360px; display:flex; flex-direction:column; gap:12px; }
+  .box h1 { margin:0 0 4px; color:var(--brand); }
+  label { display:flex; flex-direction:column; gap:4px; font-size:13px; font-weight:600; }
+  input, textarea { padding:10px; border:1px solid #cbd2d9; border-radius:10px; font:inherit; }
+  button { padding:10px 16px; border:0; border-radius:10px; background:var(--brand); color:#fff; font:inherit; font-weight:600; cursor:pointer; }
+  button:hover { filter:brightness(1.1); }
+  button.ghost { background:#e4e7eb; color:var(--ink); }
+  button.danger { background:#c53030; }
+  button.sm { padding:5px 10px; font-size:12px; margin-right:6px; }
+  #app { display:flex; min-height:100vh; }
+  nav { width:210px; background:var(--brand); padding:16px 10px; display:flex; flex-direction:column; gap:4px; }
+  nav h1 { color:#fff; font-size:20px; margin:4px 10px 16px; letter-spacing:2px; }
+  nav button { background:transparent; text-align:left; color:#d9f2ee; }
+  nav button.on { background:rgba(255,255,255,.18); color:#fff; }
+  nav .sp { flex:1; }
+  main { flex:1; padding:24px 32px; overflow:auto; max-height:100vh; }
+  h2 { margin:0 0 16px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:16px; }
+  .card { background:#fff; border-radius:16px; padding:20px; display:flex; flex-direction:column; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  .card b { font-size:34px; color:var(--brand); } .card span { color:#52606d; }
+  .card.warn b { color:#dd6b20; } .card.bad b { color:#c53030; }
+  table { width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  th, td { padding:10px 12px; text-align:left; font-size:14px; border-bottom:1px solid #edf0f3; }
+  th { background:#eef2f5; font-size:12px; text-transform:uppercase; color:#52606d; }
+  .badge { padding:3px 10px; border-radius:99px; font-size:12px; font-weight:700; }
+  .badge.active { background:#c6f6d5; color:#22543d; } .badge.pending { background:#feebc8; color:#7b341e; } .badge.suspended { background:#fed7d7; color:#742a2a; }
+  .search { width:320px; margin-bottom:12px; }
+  .form { background:#fff; padding:20px; border-radius:16px; max-width:520px; display:flex; flex-direction:column; gap:12px; }
+  .empty { color:#7b8794; } .err { color:#c53030; }
+  dialog { border:0; border-radius:16px; padding:24px; min-width:340px; }
+  dialog::backdrop { background:rgba(0,0,0,.4); }
+  dialog form { display:flex; flex-direction:column; gap:12px; } dialog h3 { margin:0; }
+  .row { display:flex; gap:8px; justify-content:flex-end; }
+</style>
+</head>
+<body>
+<div id="login" class="center" hidden>
+  <form id="lf" class="box">
+    <h1>NQATA Admin</h1>
+    <label>E-mail<input id="em" type="email" required></label>
+    <label>Mot de passe<input id="pw" type="password" required></label>
+    <div id="lerr" class="err"></div>
+    <button>Se connecter</button>
+  </form>
+</div>
+<div id="app" hidden>
+  <nav>
+    <h1>NQATA</h1>
+    <button data-t="dash">Tableau de bord</button>
+    <button data-t="shops">Commerces</button>
+    <button data-t="clients">Clients</button>
+    <button data-t="balances">Soldes</button>
+    <button data-t="scans">Scans</button>
+    <button data-t="alerts">Alertes fraude</button>
+    <button data-t="notify">Notification à tous</button>
+    <button data-t="journal">Journal</button>
+    <div class="sp"></div>
+    <button id="out">Déconnexion</button>
+  </nav>
+  <main id="main"></main>
+</div>
+<dialog id="dlg"></dialog>
+<script src="node_modules/@supabase/supabase-js/dist/umd/supabase.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

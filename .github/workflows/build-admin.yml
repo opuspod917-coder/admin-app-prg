@@ -3,11 +3,14 @@ name: Build Admin (Windows)
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    paths: ['admin/**']
 
 jobs:
   windows:
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: admin
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -18,4 +21,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: nqata-admin-windows
-          path: dist/*.exe
+          path: admin/dist/*.exe
